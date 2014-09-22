@@ -15,8 +15,6 @@ void LTC2400::init()
   cbi (DDRB, this->ltc_miso);
   sbi (DDRB, this->ltc_sck);
 
-  Serial.begin(38400);
-
   // init SPI Hardware
   sbi(SPCR, MSTR); // SPI master mode
   sbi(SPCR, SPR0); // SPI speed

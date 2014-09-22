@@ -561,6 +561,8 @@ void processCommand(unsigned char command[])
       ltc2400.init();
       break;
     case 0x37:
+      // TODO: this method should return a value and the Serial.write call
+      // should happen here
       ltc2400.read();
       break;
     /*********************************************************************************

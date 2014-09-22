@@ -27,7 +27,7 @@ class LTC2400
   void printFloat(float value, int places);
 
  public:
-  LTC2400(uint8_t ltc_cs=2, uint8_t ltc_miso=4, uint8_t ltc_sck=5);
+  LTC2400(uint8_t ltc_cs=0, uint8_t ltc_miso=3, uint8_t ltc_sck=1);
   void init();
   void read();
 };
