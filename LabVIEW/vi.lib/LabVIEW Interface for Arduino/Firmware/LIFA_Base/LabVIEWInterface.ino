@@ -23,7 +23,7 @@
 #include "IRremote.h"
 #endif
 
-
+#include "LTC2400.h"
 
 /*********************************************************************************
  ** Optionally Include And Configure Stepper Support
@@ -73,6 +73,7 @@ char spiWordSize = 0;
 Servo *servos;
 byte customChar[8];
 LiquidCrystal lcd(0,0,0,0,0,0,0);
+LTC2400 ltc2400;
 unsigned long IRdata;
 IRsend irsend;
 
@@ -552,6 +553,15 @@ void processCommand(unsigned char command[])
           break;
       }
       Serial.write((IRdata>>16) & 0xFF);
+      break;
+    /*********************************************************************************
+    ** LTC2400 ADC
+    *********************************************************************************/
+    case 0x36:
+      ltc2400.init();
+      break;
+    case 0x37:
+      ltc2400.read();
       break;
     /*********************************************************************************
     ** Unknown Packet
