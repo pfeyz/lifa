@@ -563,7 +563,9 @@ void processCommand(unsigned char command[])
     case 0x37:
       // TODO: this method should return a value and the Serial.write call
       // should happen here
-      ltc2400.read();
+      retVal = ltc2400.read();
+      Serial.write( (retVal >> 8));
+      Serial.write( (retVal & 0xFF));
       break;
     /*********************************************************************************
     ** Unknown Packet
