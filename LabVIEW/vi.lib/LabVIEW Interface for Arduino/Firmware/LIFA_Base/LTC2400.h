@@ -29,7 +29,7 @@ class LTC2400
  public:
   LTC2400(uint8_t ltc_cs=0, uint8_t ltc_miso=3, uint8_t ltc_sck=1);
   void init();
-  void read();
+  unsigned int read();
 };
 
 #endif

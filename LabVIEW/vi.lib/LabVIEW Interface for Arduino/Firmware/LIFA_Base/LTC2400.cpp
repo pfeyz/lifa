@@ -22,12 +22,12 @@ void LTC2400::init()
   sbi(SPCR, SPE);   //SPI enable
 }
 
-void LTC2400::read()
+unsigned int LTC2400::read()
 {
   float volt;
   float v_ref=4.094;          // Reference Voltage, 5.0 Volt for LT1021 or 3.0 for LP2950-3
 
-  long int ltw = 0;         // ADC Data ling int
+  unsigned int ltw = 0;         // ADC Data ling int
   int cnt;                  // counter
   byte b0;                  //
   byte sig;                 // sign bit flag
@@ -65,15 +65,10 @@ void LTC2400::read()
     dtostrf(volt,6,6,tmp);
     tmp[8]='V';
     tmp[9]='\n';
-    Serial.print(cnt++);
-    Serial.print(";  ");
-    printFloat(volt,6);           // print voltage as floating number
-    Serial.println("  ");
-
   }
   sbi(PORTB,this->ltc_cs); // LTC2400 CS hi
   delay(20);
-
+  return ltw;
 }
 
 byte LTC2400::SPI_read()
